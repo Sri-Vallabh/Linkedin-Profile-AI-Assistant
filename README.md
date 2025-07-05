@@ -19,7 +19,7 @@ license: mit
 
 # 🤖 LinkedIn AI Career Assistant
 
-[![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/tsrivallabh/Linkedin-AI-Assistant)
+[![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://sri-vallabh-linkedin-profile-ai-assistant-app-ffuh1c.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-latest-green.svg)](https://langchain-ai.github.io/langgraph/)
@@ -30,7 +30,7 @@ An intelligent AI-powered career assistant that helps users optimize their Linke
 
 
 
-Try the application live at: **https://huggingface.co/spaces/tsrivallabh/Linkedin-AI-Assistant**
+Try the application live at: **https://sri-vallabh-linkedin-profile-ai-assistant-app-ffuh1c.streamlit.app/**
 
 ![Greeting Interface](./images/greeting.png)
 
