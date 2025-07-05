@@ -1,31 +1,21 @@
-name: Sync to Hugging Face hub
+name: Sync with Hugging Face Hub
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: [main]   # or your default branch
 
 jobs:
-  sync-to-hub:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync with Hugging Face
+        uses: nateraw/huggingface-sync-action@v0.0.5
         with:
-          fetch-depth: 0
-          lfs: true
-
-      - name: Setup Git LFS
-        run: |
-          git lfs install
-          git lfs track "*.png"
-          git add .gitattributes
-          git commit -m "Configure LFS" || echo "No changes"
-
-      - name: Push to Hugging Face Hub
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git remote add hf https://tsrivallabh:$HF_TOKEN@huggingface.co/spaces/tsrivallabh/Linkedin-AI-Assistant
-          git push hf main --force
+          github_repo_id: Sri-Vallabh/LLM-Powered-Fact-Checker
+          huggingface_repo_id: tsrivallabh/
+          repo_type: space
+          space_sdk: docker
+          hf_token: ${{ secrets.HF_TOKEN }}
