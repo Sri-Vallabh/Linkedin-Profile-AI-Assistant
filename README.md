@@ -25,6 +25,8 @@ An intelligent AI-powered career assistant that helps users optimize their Linke
 
 ## 🚀 **Live Demo**
 
+
+
 Try the application live at: **https://huggingface.co/spaces/tsrivallabh/Linkedin-AI-Assistant**
 
 ![Greeting Interface](./images/greeting.png)
