@@ -158,8 +158,8 @@ The LinkedIn AI Career Assistant is a comprehensive career optimization tool tha
 
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/linkedin-ai-assistant.git
-cd linkedin-ai-assistant
+git clone https://github.com/Sri-Vallabh/Linkedin-Profile-AI-Assistant.git
+cd Linkedin-Profile-AI-Assistant
 ```
 
 2. **Install Dependencies**
@@ -175,7 +175,7 @@ cp .env.example .env
 
 4. **Run the Application**
 ```bash
-streamlit run main.py
+streamlit run app.py
 ```
 
 5. **Access the Application**
