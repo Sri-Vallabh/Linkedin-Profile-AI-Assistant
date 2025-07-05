@@ -1,0 +1,21 @@
+name: Sync with Hugging Face Hub
+
+on:
+  push:
+    branches: [main]   # or your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync with Hugging Face
+        uses: nateraw/huggingface-sync-action@v0.0.5
+        with:
+          github_repo_id: Sri-Vallabh/Linkedin-Profile-Al-Assistant
+          huggingface_repo_id: tsrivallabh/Linkedin-AI-Assistant
+          repo_type: space
+          space_sdk: docker
+          hf_token: ${{ secrets.HF_TOKEN }}

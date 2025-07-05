@@ -1,0 +1,31 @@
+apify-client
+python-dotenv
+streamlit
+langchain
+openai
+python-dotenv
+langchain_openai
+# Core Python packages
+python-dotenv
+streamlit
+pydantic
+
+# LangChain ecosystem
+langchain-core
+langchain-openai
+langgraph
+langgraph-checkpoint
+
+# For OpenAI-compatible LLMs (Groq, etc.)
+openai
+
+# For parsing "dirty" JSON
+dirtyjson
+
+typing-extensions
+
+tqdm
+
+
+
+
