@@ -14,7 +14,7 @@ jobs:
       - name: Sync with Hugging Face
         uses: nateraw/huggingface-sync-action@v0.0.5
         with:
-          github_repo_id: Sri-Vallabh/Linkedin-Profile-Al-Assistant
+          github_repo_id: Sri-Vallabh/Linkedin-Profile-AI-Assistant
           huggingface_repo_id: tsrivallabh/Linkedin-AI-Assistant
           repo_type: space
           space_sdk: docker
