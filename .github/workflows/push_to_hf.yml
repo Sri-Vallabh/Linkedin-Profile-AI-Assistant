@@ -13,7 +13,15 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Push to hub
+
+      - name: Setup Git LFS
+        run: |
+          git lfs install
+          git lfs track "*.png"
+          git add .gitattributes
+          git commit -m "Configure LFS" || echo "No changes"
+
+      - name: Push to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
