@@ -23,7 +23,7 @@ COPY . .
 EXPOSE 8501
 
 # Streamlit specific: disable browser opening & set port
-ENV STREAMLIT_SERVER_PORT=7860
+ENV STREAMLIT_SERVER_PORT=8501
 ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
 
 # Run the Streamlit app
