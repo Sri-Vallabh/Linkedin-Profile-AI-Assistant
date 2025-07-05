@@ -32,7 +32,7 @@ An intelligent AI-powered career assistant that helps users optimize their Linke
 
 Try the application live at: **https://sri-vallabh-linkedin-profile-ai-assistant-app-ffuh1c.streamlit.app/**
 
-![Greeting Interface](./images/greeting.png)
+![Greeting Interface](./assets/greeting.png)
 
 ## 📋 **Table of Contents**
 
@@ -376,6 +376,6 @@ For questions, issues, or suggestions:
 
 ---
 
-**Built with ❤️ by Sri vallabh**
+**Built with ❤️ by Sri Vallabh**
 
 *Empowering professionals to optimize their LinkedIn presence and advance their careers through AI-powered insights.*
