@@ -13,10 +13,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🤗 Sync with Hugging Face Hub
-        uses: huggingface/hub-action@v1
+        uses: nateraw/huggingface-sync-action@v0.0.5
         with:
-          repo: tsrivallabh/Linkedin-AI-Assistant      # Your space
-          repo-type: space
-          space-sdk: docker
-          private: false                               # boolean, no quotes!
-          token: ${{ secrets.HF_TOKEN }}
+          github_repo_id: Sri-Vallabh/Linkedin-Profile-AI-Assistant
+          huggingface_repo_id: tsrivallabh/Linkedin-AI-Assistant
+          repo_type: space
+          space_sdk: docker
+          private: false
+          hf_token: ${{ secrets.HF_TOKEN }}
