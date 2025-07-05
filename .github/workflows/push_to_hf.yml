@@ -1,21 +1,27 @@
-name: Sync with Hugging Face Hub
+name: 🚀 Sync to Hugging Face Space
 
 on:
   push:
-    branches: [main]   # or your default branch
+    branches: [main]   # Trigger on push to main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Sync with Hugging Face
-        uses: nateraw/huggingface-sync-action@v0.0.5
+      - name: 🤗 Sync with Hugging Face Hub
+        uses: huggingface/hub-action@v1
         with:
-          github_repo_id: Sri-Vallabh/Linkedin-Profile-AI-Assistant
-          huggingface_repo_id: tsrivallabh/Linkedin-AI-Assistant
-          repo_type: space
-          space_sdk: docker
-          hf_token: ${{ secrets.HF_TOKEN }}
+          # Name of your HF repo (user_or_org/repo_name)
+          repo: tsrivallabh/Linkedin-AI-Assistant
+          # Type of repository: space, model, or dataset
+          repo-type: space
+          # Optional: SDK type for space (gradio, streamlit, docker, etc.)
+          space-sdk: docker
+          # If you want to keep it private (boolean, no quotes)
+          private: false
+          # Hugging Face token (should be saved in GitHub secrets)
+          token: ${{ secrets.HF_TOKEN }}
