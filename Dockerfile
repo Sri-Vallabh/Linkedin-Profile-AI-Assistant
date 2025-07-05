@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose the port Streamlit runs on
-EXPOSE 8160
+EXPOSE 8501
 
 # Streamlit specific: disable browser opening & set port
 ENV STREAMLIT_SERVER_PORT=7860
