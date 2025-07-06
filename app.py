@@ -525,36 +525,13 @@ JSON must be parseable.
 
 
 # --- Tool: Profile Analyzer ---
+# --- Tool: Profile Analyzer ---
 @tool
 def profile_analyzer() -> dict:
     """
-    Tool: Analyze the overall user's profile to give strengths, weaknesses, suggestions.
+    Tool: Analyze the overall full user's profile to give strengths, weaknesses, suggestions.
 
     - Takes no arguments: directly reads the summarized profile from Streamlit session state.
-    - Builds a tailored prompt to ask the LLM to analyze strengths, weaknesses, and suggestions.
-    - Parses the LLM’s JSON response into a structured ProfileAnalysisModel for easier downstream use.
-    - Saves the analysis both to user memory (for history) and back into state (for downstream tools).
-    - Returns the structured analysis.
-
-    Expected result (example JSON format):
-    {
-    "strengths": {
-        "technical": ["...", "..."],
-        "projects": ["...", "..."],
-        "education": ["...", "..."],
-        "soft_skills": ["...", "..."]
-    },
-    "weaknesses": {
-        "technical_gaps": ["...", "..."],
-        "project_or_experience_gaps": ["...", "..."],
-        "missing_context": ["...", "..."]
-    },
-    "suggestions": [
-        "...",
-        "...",
-        "..."
-    ]
-    }
     """
 
 
@@ -590,11 +567,9 @@ def profile_analyzer() -> dict:
 def job_matcher(target_role: str = None) -> dict:
     """
     Tool: Analyze how well the user's profile fits the target role.
-
+    - If user is asking if he is a good fit for a certain role, or needs to see if his profile is compatible with a certain role, call this.
     - Takes target_role as an argument.
-    - Calls the LLM with a tailored prompt built from profile sections and target role.
-    - Parses the result into a structured JobFitModel and saves to state.
-    - Returns the structured job_fit result as dict.
+    - this tool is needed when match score, missing skills, suggestions are needed based on a job name given.
     """
     import streamlit as st
 
@@ -639,42 +614,9 @@ def job_matcher(target_role: str = None) -> dict:
 @tool
 def content_generator(key: str) -> dict:
     """
-    ✏️ Tool: Enhance or rewrite a specific LinkedIn profile section to better fit the user's target role.
+    Tool: Enhance or rewrite a specific LinkedIn profile section to better fit the user's target role.
+    - Takes a single argument: choose only a single arguement from sections.about,section.headline,sections.project,sections.experiences
 
-    **How it works:**
-    - Takes a single argument: `key` (dot notation string, e.g., "sections.about" or "sections.projects").
-    - Calls `extract_from_state_tool(key)` to fetch the current text of that section.
-    - Uses the last part of the key as `section_name` for reference (e.g., "about", "headline").
-    - Builds a prompt that includes:
-        * The target role the user wants to focus on (from state).
-        * The current text of the section.
-        * Latest user message (if any) as additional context.
-    - Calls the LLM to generate an improved or rewritten version of the section.
-    - Saves the new text into `state.enhanced_content[section_name]` for later display or use.
-    - Also stores a copy in `user_memory` (under keys like "enhanced_about" or "enhanced_projects").
-
-    **Sections that can be generated:**
-    - About
-    - Headline
-    - Projects
-    - Skills summary
-    - Experiences
-    - Certifications
-    - Honors & Awards
-    - Educations
-    - Publications
-    - Courses
-    - Other text-based fields extracted from the user's LinkedIn profile
-
-    **Returns:**
-    A structured result as a dictionary:
-    ```json
-    {
-      "new_content": "..."   // the improved version of the requested section
-    }
-    ```
-
-    This helps keep the profile targeted, polished, and aligned with the user's career goals.
     """
 
  
@@ -739,31 +681,19 @@ def content_generator(key: str) -> dict:
 @tool
 def extract_from_state_tool(key: str) -> Dict[str, Any]:
     """
-    📦 Tool: Extract data from the chatbot state stored in st.session_state.state.
+    This tool is used if user wants to ask about any particular part of this profile. It expects key as an arguement, that represents what
+    the user is wanting to look at, from his profile.
+    Argument:
+      key: only pass one from the below list, identify one thing the user wants to look into and choose that:
+        "sections.about", "sections.headline", "sections.skills", "sections.projects",
+        "sections.educations", "sections.certifications", "sections.honors_and_awards",
+        "sections.experiences", "sections.publications", "sections.patents",
+        "sections.courses", "sections.test_scores", "sections.verifications",
+        "sections.highlights", "sections.job_title", "sections.company_name",
+        "sections.company_industry", "sections.current_job_duration", "sections.full_name",
+        "enhanced_content,"profile_analysis", "job_fit", "target_role", "editing_section"
+      """
 
-    The chatbot state is a dictionary containing:
-    - profile: summarized profile data (dict)
-    - sections: flattened profile sections (dict of strings)
-      e.g., sections.about, sections.projects, sections.skills, etc.
-    - enhanced_content: improved sections generated by ContentGenerator (dict)
-      e.g., enhanced_content.about
-    - profile_analysis: strengths, weaknesses, suggestions (dict, from ProfileAnalyzer)
-    - job_fit: target role match, missing skills, match_score (dict, from JobMatcher)
-    - target_role: string
-    - editing_section: string
-    - chat_history: list of messages
-
-    Use dot notation for nested fields:
-      - 'sections.about'
-      - 'enhanced_content.headline'
-      - 'profile_analysis'
-      - 'job_fit'
-      - 'target_role'
-
-    Returns:
-        {'result': value} → where value can be str, dict, list, etc.
-        If the key doesn't exist, returns {'result': None}.
-    """
     import streamlit as st
     print(f"extracting for {key}")
     state = st.session_state.state  # should be a dict
