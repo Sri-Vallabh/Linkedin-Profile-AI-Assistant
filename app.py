@@ -772,6 +772,7 @@ You can:
 
 IMPORTANT RULES:
 - You must call at most one tool at a time.
+- Try to use information from previous chat to answer question. If not, then only use tool call.
 - Never call multiple tools together in the same step.
 - Prefer to call a tool when answering instead of directly replying, especially if it can add new, useful insights or up-to-date data.
 - If a tool has been recently used and new info isn’t needed, you may answer directly.
@@ -794,15 +795,36 @@ Always respond helpfully, clearly, and with actionable advice to guide the user 
         tool_args = first_tool.get("args") if isinstance(first_tool, dict) else getattr(first_tool, "args", {})
         print(f"[DEBBBBUUUUGGG] using tool {tool_name}")
         if tool_name == "extract_from_state_tool":
-            # Directly run the tool in this node
-            key = tool_args.get("key") if isinstance(tool_args, dict) else None
+            key = tool_args.get("key")
             extracted = extract_from_state_tool(key)
             value = extracted.get("result")
 
-            # Compose AI message
-            msg = f" Here is the requested data for **{key}**:\n```{value}```" if value else f"⚠ Could not find data for **{key}**."
+            # Compose follow-up prompt
+            user_question = None
+            for m in reversed(chat_history):
+                if isinstance(m, HumanMessage):
+                    user_question = m.content
+                    break
 
-            state.setdefault("chat_history", []).append(AIMessage(content=msg))
+            prompt = (
+                f"User question: \"{user_question}\"\n\n"
+                f"Extracted data for key `{key}`:\n{value}\n\n"
+                "Now, please answer the user's question using this data."
+            )
+
+            # Call Groq LLM directly
+            completion = groq_client.chat.completions.create(
+                model="llama3-8b-8192",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.3,
+                max_tokens=800
+            )
+            response_text = completion.choices[0].message.content
+
+            print("[DEBUG] Final answer after tool:", response_text)
+
+            # Add final answer to chat history
+            state.setdefault("chat_history", []).append(AIMessage(content=response_text))
             state.next_tool_name = None
         else:
             # Other tool: let graph route to the right node
