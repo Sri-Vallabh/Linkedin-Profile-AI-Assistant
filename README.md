@@ -1,5 +1,5 @@
 ---
-title: Linkedin AI Assistant
+title: Linkedin Assistant
 emoji: 🚀
 colorFrom: red
 colorTo: red
@@ -8,14 +8,9 @@ app_port: 8501
 tags:
   - streamlit
 pinned: false
-short_description: Your personal tool to enhance your linkedin profile
+short_description: Streamlit template space
 license: mit
-
-
-
 ---
-
-
 
 # 🤖 LinkedIn AI Career Assistant
 
