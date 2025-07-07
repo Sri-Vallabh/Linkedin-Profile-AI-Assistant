@@ -341,7 +341,7 @@ def call_llm_and_parse(prompt: str, model: BaseModel, max_retries: int = 3, dela
             print(f"[call_llm_and_parse] Attempt {attempt}: sending prompt to LLM...")
             
             completion = groq_client.chat.completions.create(
-                model="llama3-8b-8192",   # replace with your model name if different
+                model="llama3-8b-8192",  
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3,
                 max_tokens=800
@@ -500,38 +500,38 @@ The JSON must be directly parseable.
 """.strip()
 
 
-def content_generation_prompt(section_name: str, original_text: str, target_role: str, additional_context: str = "") -> str:
-    return f"""
-You are a top LinkedIn profile related sections enhancer/ rewriter.
+# def content_generation_prompt(section_name: str, original_text: str, target_role: str, additional_context: str = "") -> str:
+#     return f"""
+# You are a top LinkedIn profile related sections enhancer/ rewriter.
 
-Rewrite the following profile section to better fit the target role of "{target_role}".
+# Rewrite the following profile section to better fit the target role of "{target_role}".
 
-Section to rewrite: "{section_name}"
-Original content:
-\"\"\"{original_text}\"\"\"
+# Section to rewrite: "{section_name}"
+# Original content:
+# \"\"\"{original_text}\"\"\"
 
-Additional context or clarifications from the user (if any):
-\"\"\"{additional_context}\"\"\"
+# Additional context or clarifications from the user (if any):
+# \"\"\"{additional_context}\"\"\"
 
-Respond ONLY with valid JSON matching EXACTLY this schema (start with '{{' and end with '}}'):
+# Respond ONLY with valid JSON matching EXACTLY this schema (start with '{{' and end with '}}'):
 
-{{
-  "new_content": "..."   // improved version of the section
-}}
+# {{
+#   "new_content": "..."   // improved version of the section
+# }}
 
-Do NOT add explanations, comments, or markdown.
-JSON must be parseable.
-""".strip()
+# Do NOT add explanations, comments, or markdown.
+# JSON must be parseable.
+# """.strip()
 
 
-# --- Tool: Profile Analyzer ---
 # --- Tool: Profile Analyzer ---
 @tool
 def profile_analyzer() -> dict:
     """
     Tool: Analyze the overall full user's profile to give strengths, weaknesses, suggestions.
+    This is needed only if full analysis of profile is needed. 
 
-    - Takes no arguments: directly reads the summarized profile from Streamlit session state.
+    - It takes no arguments
     """
 
 
@@ -610,78 +610,79 @@ def job_matcher(target_role: str = None) -> dict:
 
 
 
-# --- Tool: Content Generator ---
-@tool
-def content_generator(key: str) -> dict:
-    """
-    Tool: Enhance or rewrite a specific LinkedIn profile section to better fit the user's target role.
-    - Takes a single argument: choose only a single arguement from sections.about,section.headline,sections.project,sections.experiences
+# # --- Tool: Content Generator ---
+# @tool
+# def content_generator(key: str) -> dict:
+#     """
+#     Tool: Enhance or rewrite a specific LinkedIn profile section.
+#     - If the user is asking to improve certain sections among about, headline, project or experiences, call this function.
+#     - Takes a single argument: choose only a single arguement from sections.about,section.headline,sections.project,sections.experiences
 
-    """
+#     """
 
  
 
-    state = st.session_state.state
+#     state = st.session_state.state
 
-    # Step 1: Call extract_from_state_tool to get original text
-    extracted = extract_from_state_tool(key)
-    original_text = extracted["result"] or ""
+#     # Step 1: Call extract_from_state_tool to get original text
+#     extracted = extract_from_state_tool(key)
+#     original_text = extracted["result"] or ""
 
-    # Step 2: Derive section_name from last part of key
-    section_name = key.split(".")[-1]
+#     # Step 2: Derive section_name from last part of key
+#     section_name = key.split(".")[-1]
 
-    # Step 3: Get target_role from state safely
-    # Pydantic model or dict: use getattr if Pydantic else dict access
-    target_role = None
-    if hasattr(state, "target_role"):
-        target_role = getattr(state, "target_role", None)
-    elif isinstance(state, dict):
-        target_role = state.get("target_role")
+#     # Step 3: Get target_role from state safely
+#     # Pydantic model or dict: use getattr if Pydantic else dict access
+#     target_role = None
+#     if hasattr(state, "target_role"):
+#         target_role = getattr(state, "target_role", None)
+#     elif isinstance(state, dict):
+#         target_role = state.get("target_role")
 
-    target_role = target_role or "unspecified role"
+#     target_role = target_role or "unspecified role"
 
-    # Step 4: Get latest user message from chat_history
-    chat_history = []
-    if hasattr(state, "chat_history"):
-        chat_history = state.chat_history
-    elif isinstance(state, dict):
-        chat_history = state["chat_history"] if "chat_history" in state else []
+#     # Step 4: Get latest user message from chat_history
+#     chat_history = []
+#     if hasattr(state, "chat_history"):
+#         chat_history = state.chat_history
+#     elif isinstance(state, dict):
+#         chat_history = state["chat_history"] if "chat_history" in state else []
 
-    user_messages = [
-        m.content for m in reversed(chat_history)
-        if isinstance(m, HumanMessage)
-    ]
-    additional_context = user_messages[0] if user_messages else ""
+#     user_messages = [
+#         m.content for m in reversed(chat_history)
+#         if isinstance(m, HumanMessage)
+#     ]
+#     additional_context = user_messages[0] if user_messages else ""
 
-    # Step 5: Build prompt
-    prompt = content_generation_prompt(
-        section_name=section_name,
-        original_text=original_text,
-        target_role=target_role,
-        additional_context=additional_context
-    )
+#     # Step 5: Build prompt
+#     prompt = content_generation_prompt(
+#         section_name=section_name,
+#         original_text=original_text,
+#         target_role=target_role,
+#         additional_context=additional_context
+#     )
 
-    # Step 6: Call LLM & parse result
-    generated = call_llm_and_parse(prompt, ContentGenerationModel)
+#     # Step 6: Call LLM & parse result
+#     generated = call_llm_and_parse(prompt, ContentGenerationModel)
 
-    # Step 7: Save new text
-    new_text = generated.new_content
-    if new_text:
-        # enhanced_content may be in Pydantic or dict → ensure dict access
-        if hasattr(state, "enhanced_content"):
-            state.enhanced_content[section_name] = new_text
-        elif isinstance(state, dict):
-            state["enhanced_content"][section_name] = new_text
+#     # Step 7: Save new text
+#     new_text = generated.new_content
+#     if new_text:
+#         # enhanced_content may be in Pydantic or dict → ensure dict access
+#         if hasattr(state, "enhanced_content"):
+#             state.enhanced_content[section_name] = new_text
+#         elif isinstance(state, dict):
+#             state["enhanced_content"][section_name] = new_text
 
-        user_memory.save(f"enhanced_{section_name}", new_text)
+#         user_memory.save(f"enhanced_{section_name}", new_text)
 
-    return generated
+#     return generated
 
 
 @tool
 def extract_from_state_tool(key: str) -> Dict[str, Any]:
     """
-    This tool is used if user wants to ask about any particular part of this profile. It expects key as an arguement, that represents what
+    This tool is used if user wants to ask about any particular part of this profile. Use this if a singe section is targeted. It expects key as an arguement, that represents what
     the user is wanting to look at, from his profile.
     Argument:
       key: only pass one from the below list, identify one thing the user wants to look into and choose that:
@@ -720,7 +721,7 @@ def extract_from_state_tool(key: str) -> Dict[str, Any]:
 tools = [
     profile_analyzer,
    job_matcher,
-    content_generator,
+    # content_generator,
     extract_from_state_tool
 ]
 
@@ -763,17 +764,12 @@ def chatbot_node(state: ChatbotState) -> ChatbotState:
 You are a helpful AI assistant specialized in LinkedIn profile coaching.
 
 You can:
-- Answer user questions directly from chat history and profile data.
-- You should proactively use specialized tools whenever possible to give richer, data-driven answers:
-   extract_from_state_tool → to look up data from the user's profile, sections, etc.
-   profile_analyzer → analyze the overall user's profile to find strengths, weaknesses, and actionable suggestions.
-   job_matcher → evaluate how well the profile matches the user's target role and highlight missing skills,gives match score.
-   content_generator → rewrite or enhance specific sections of the profile (like "about", "projects", etc.) to better fit the target role.
-
+- Answer user questions.
+- You should proactively use specialized tools whenever possible to give richer, data-driven answers.
 IMPORTANT RULES:
 - You must call at most one tool at a time.
-- Try to use information from previous chat to answer question. If not, then only use tool call.
 - Never call multiple tools together in the same step.
+- call profile_analyzer function only when full profile analysis is needed, otherwise rely on extract_from_state_tool.
 - Prefer to call a tool when answering instead of directly replying, especially if it can add new, useful insights or up-to-date data.
 - If a tool has been recently used and new info isn’t needed, you may answer directly.
 - Use tools to verify assumptions, enrich answers, or when the user asks about strengths, weaknesses, job fit, or wants improvements.
@@ -782,7 +778,8 @@ Always respond helpfully, clearly, and with actionable advice to guide the user 
 """
 
     # Build messages & invoke LLM
-    messages = [SystemMessage(content=system_prompt)] + chat_history[-6:]
+    messages = [SystemMessage(content=system_prompt)] + chat_history[-4:]
+    # messages = [SystemMessage(content=system_prompt)]
     response = llm_with_tools.invoke(messages)
 
     # DEBUG
@@ -911,54 +908,118 @@ def job_matcher_node(state: ChatbotState) -> ChatbotState:
 
     return state
 
+# @tool
+# def content_generator(key: str) -> dict:
+#     """
+#     Tool: Enhance or rewrite a specific LinkedIn profile section.
+#     - If the user is asking to improve certain sections among about, headline, project or experiences, call this function.
+#     - Takes a single argument: choose only a single arguement from sections.about,section.headline,sections.project,sections.experiences
 
-def content_generator_node(state: ChatbotState) -> ChatbotState:
-    import streamlit as st
+#     """
 
-    # Decide which section to edit
-    section_name = state.editing_section or "about"
+ 
 
-    # 🧠 Use extract_from_state_tool to get original text
-    key = f"sections.{section_name}"
-    extracted = extract_from_state_tool(key)
-    original_text = extracted.get("result") or ""
+#     state = st.session_state.state
 
-    # Get target role
-    target_role = state.target_role or "unspecified role"
+#     # Step 1: Call extract_from_state_tool to get original text
+#     extracted = extract_from_state_tool(key)
+#     original_text = extracted["result"] or ""
 
-    # Also get latest user message (to add as additional context)
-    user_messages = [
-        m.content for m in reversed(state.chat_history)
-        if isinstance(m, HumanMessage)
-    ]
-    additional_context = user_messages[0] if user_messages else ""
+#     # Step 2: Derive section_name from last part of key
+#     section_name = key.split(".")[-1]
 
-    # Build prompt
-    prompt = content_generation_prompt(
-        section_name=section_name,
-        original_text=original_text,
-        target_role=target_role,
-        additional_context=additional_context
-    )
+#     # Step 3: Get target_role from state safely
+#     # Pydantic model or dict: use getattr if Pydantic else dict access
+#     target_role = None
+#     if hasattr(state, "target_role"):
+#         target_role = getattr(state, "target_role", None)
+#     elif isinstance(state, dict):
+#         target_role = state.get("target_role")
 
-    # 🧙‍♂️ Call LLM and parse result
-    generated = call_llm_and_parse(prompt, ContentGenerationModel)
-    new_text = generated.new_content
+#     target_role = target_role or "unspecified role"
 
-    # Save to state
-    if new_text:
-        state.enhanced_content[section_name] = new_text
+#     # Step 4: Get latest user message from chat_history
+#     chat_history = []
+#     if hasattr(state, "chat_history"):
+#         chat_history = state.chat_history
+#     elif isinstance(state, dict):
+#         chat_history = state["chat_history"] if "chat_history" in state else []
 
-        # Add friendly AI message to chat
-        msg = (
-            f" I've enhanced your {section_name} section for the role of {target_role}:\n\n"
-            f"{new_text}"
-        )
-    else:
-        msg = f"Sorry, I couldn’t enhance your {section_name} section."
+#     user_messages = [
+#         m.content for m in reversed(chat_history)
+#         if isinstance(m, HumanMessage)
+#     ]
+#     additional_context = user_messages[0] if user_messages else ""
 
-    state.chat_history.append(AIMessage(content=msg))
-    state.next_tool_name = None
+#     # Step 5: Build prompt
+#     prompt = content_generation_prompt(
+#         section_name=section_name,
+#         original_text=original_text,
+#         target_role=target_role,
+#         additional_context=additional_context
+#     )
+
+#     # Step 6: Call LLM & parse result
+#     generated = call_llm_and_parse(prompt, ContentGenerationModel)
+
+#     # Step 7: Save new text
+#     new_text = generated.new_content
+#     if new_text:
+#         # enhanced_content may be in Pydantic or dict → ensure dict access
+#         if hasattr(state, "enhanced_content"):
+#             state.enhanced_content[section_name] = new_text
+#         elif isinstance(state, dict):
+#             state["enhanced_content"][section_name] = new_text
+
+#         user_memory.save(f"enhanced_{section_name}", new_text)
+
+#     return generated
+# def content_generator_node(state: ChatbotState) -> ChatbotState:
+
+#     # Decide which section to edit
+#     section_name = state.editing_section or "about"
+
+#     # 🧠 Use extract_from_state_tool to get original text
+#     key = f"sections.{section_name}"
+#     extracted = extract_from_state_tool(key)
+#     original_text = extracted.get("result") or ""
+
+#     # Get target role
+#     target_role = state.target_role or "unspecified role"
+
+#     # Also get latest user message (to add as additional context)
+#     user_messages = [
+#         m.content for m in reversed(state.chat_history)
+#         if isinstance(m, HumanMessage)
+#     ]
+#     additional_context = user_messages[0] if user_messages else ""
+#     content_generator()
+#     # Build prompt
+#     prompt = content_generation_prompt(
+#         section_name=section_name,
+#         original_text=original_text,
+#         target_role=target_role,
+#         additional_context=additional_context
+#     )
+
+#     # 🧙‍♂️ Call LLM and parse result
+#     generated = call_llm_and_parse(prompt, ContentGenerationModel)
+#     new_text = generated.new_content
+
+#     # Save to state
+#     if new_text:
+#         state.enhanced_content[section_name] = new_text
+
+#         # Add friendly AI message to chat
+#         msg = (
+#             f" I've enhanced your {section_name} section for the role of {target_role}:\n\n"
+#             f"{new_text}"
+#         )
+#     else:
+#         msg = f"Sorry, I couldn’t enhance your {section_name} section."
+
+#     state.chat_history.append(AIMessage(content=msg))
+#     state.next_tool_name = None
 
 import streamlit as st
 import re
@@ -1043,20 +1104,21 @@ graph = StateGraph(state_schema=ChatbotState)
 graph.add_node("chatbot", chatbot_node)
 graph.add_node("profile_analyzer", profile_analyzer_node)
 graph.add_node("job_matcher", job_matcher_node)
-graph.add_node("content_generator", content_generator_node)
+# graph.add_node("content_generator", content_generator_node)
 graph.add_edge(START, "chatbot")
 graph.add_conditional_edges(
     "chatbot",
     tools_condition,
-    ["profile_analyzer", "job_matcher", "content_generator", END]
+    # ["profile_analyzer", "job_matcher", "content_generator", END]
+    ["profile_analyzer", "job_matcher", END]
 )
-for tool_node in ["profile_analyzer", "job_matcher", "content_generator"]:
+# for tool_node in ["profile_analyzer", "job_matcher", "content_generator"]:
+for tool_node in ["profile_analyzer", "job_matcher"]:
     graph.add_edge(tool_node, "chatbot")
 graph.set_entry_point("chatbot")
 
 st.set_page_config(page_title="💼 LinkedIn AI Career Assistant", page_icon="🤖", layout="wide")
 st.title("🧑‍💼 LinkedIn AI Career Assistant")
-
 def reset_state(raw_profile, url):
     st.session_state.state = initialize_state(raw_profile)
     print(st.session_state.state['sections'])
