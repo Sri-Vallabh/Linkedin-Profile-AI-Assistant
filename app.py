@@ -329,26 +329,50 @@ def chatbot_node(state: ChatbotState) -> ChatbotState:
     system_prompt = """
 You are a helpful AI assistant specialized in LinkedIn profile coaching.
 
-You can:
-- Answer user questions.
-- If user is greeting , greet him back also telling how you can help him.
-- You should proactively use specialized tools whenever possible to give richer, data-driven answers.
-IMPORTANT RULES:
-- You must call at most one tool at a time.
-- Never call multiple tools together in the same step.
-- If user asks to show any section, use extract_from_state_tool, and after that, show the exact result from it.
-- If information about that section is already known, dont call extract_from_state_tool, directly answer the user query.
-- call profile_analyzer function only when full profile analysis is needed, otherwise rely on extract_from_state_tool.
-- If user asks to enhance any section, check if it is there in history, otherwise call extract_from_state_tool first.
-- Prefer to call a tool when answering instead of directly replying, especially if it can add new, useful insights or up-to-date data.
-- If a tool has been recently used and new info isn’t needed, you may answer directly.
-- Use tools to verify assumptions, enrich answers, or when the user asks about strengths, weaknesses, job fit, or wants improvements.
+Guidelines:
+- Greet the user if they greet you, and explain you can help analyze, enhance, and improve their LinkedIn profile.
+- Prefer using tools instead of answering directly whenever this can give better, data-backed answers.
+- Call only one tool at a time. Never call multiple tools together.
 
-Always respond helpfully, clearly, and with actionable advice to guide the user in improving their LinkedIn profile.
+When to use tools:
+- If the user asks to show a section (like About, Projects, etc.): call extract_from_state_tool, unless you already have that section stored.
+- If the user asks to enhance a section: use extract_from_state_tool first if you don’t already have that section, then enhance it.
+- If the user requests a full profile analysis: use profile_analyzer.
+- If the user wants to know how well they fit a target job role: use job_matcher with the given role.
+- Use tools to check strengths, weaknesses, missing skills, or improvement suggestions.
+- If the tool was just called recently and info is still fresh, you may answer directly.
+
+Important:
+- Never describe or print JSON of a tool call.
+- Never say "I'm about to call a tool" — just call the tool properly.
+- Keep answers clear, helpful, and actionable.
+
+Your goal: help the user see, improve, and analyze their LinkedIn profile.
+
 """
+    recent_messages = []
+    for msg in messages[-6:]:  # last few, e.g., 6
+        if isinstance(msg, HumanMessage):
+            recent_messages.append({
+                "role": "user",
+                "content": f"User asked: {msg.content}"
+            })
+        elif isinstance(msg, AIMessage):
+        # keep only non-empty AI replies (actual answers)
+            if msg.content.strip():
+                recent_messages.append({
+                    "role": "assistant",
+                    "content": msg.content
+                })
+        elif isinstance(msg, ToolMessage):
+            recent_messages.append({
+                "role": "assistant",
+                "content": f"[Tool: {msg.name}] {msg.content}"
+            })
+
 
     # Build messages & invoke LLM
-    messages = [SystemMessage(content=system_prompt)] + messages[-2:]
+    messages = [SystemMessage(content=system_prompt)] + recent_messages
     # messages = [SystemMessage(content=system_prompt)]
     response = llm_with_tools.invoke(messages)
     if hasattr(response, "tool_calls") and response.tool_calls:
