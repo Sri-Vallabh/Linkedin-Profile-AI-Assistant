@@ -1,0 +1,514 @@
+{
+  "linkedinUrl": "https://www.linkedin.com/in/sri-vallabh-tammireddy/",
+  "firstName": "Sri Vallabh",
+  "lastName": "Tammireddy",
+  "fullName": "Sri Vallabh Tammireddy",
+  "headline": "CSE'25 IITG | Building Intelligent Solutions using AI",
+  "connections": 233,
+  "followers": 233,
+  "email": null,
+  "mobileNumber": null,
+  "jobTitle": null,
+  "companyName": null,
+  "companyIndustry": null,
+  "companyWebsite": null,
+  "companyLinkedin": null,
+  "companyFoundedIn": null,
+  "companySize": null,
+  "currentJobDuration": null,
+  "currentJobDurationInYrs": 0,
+  "topSkillsByEndorsements": null,
+  "addressCountryOnly": null,
+  "addressWithCountry": "India",
+  "addressWithoutCountry": "India",
+  "profilePic": "https://media.licdn.com/dms/image/v2/D5603AQEE5AZYXSjbGg/profile-displayphoto-scale_200_200/B56ZfO5JQ2GoAY-/0/1751522782138?e=1757548800&v=beta&t=Gc-xw3YXrBJxMRlHME_bhgBWhncHe8if1YjDIl-AvAk",
+  "profilePicHighQuality": "https://media.licdn.com/dms/image/v2/D5603AQEE5AZYXSjbGg/profile-displayphoto-crop_800_800/B56ZfO5JQ2GoAI-/0/1751522782049?e=1757548800&v=beta&t=36NV_HA22_iSoq2YfAhd_RkUGCfisGJ4Y5LXazw9XcQ",
+  "about": "I am a Computer Science & Engineering graduate from IIT Guwahati, passionate about leveraging AI and machine learning to solve real-world problems. My academic journey and hands-on project experience have equipped me with a robust foundation in deep learning, natural language processing, and large language models (LLMs).\n\nI have built and deployed end-to-end AI solutions, from transformer-based NLP models to scalable backend systems, and have a keen interest in building products that make a positive impact. My technical toolkit includes Python, PyTorch, TensorFlow, Docker, and cloud platforms, as well as modern web technologies like React and TypeScript.\n\nI thrive in collaborative, fast-paced environments and enjoy tackling complex challenges\u2014whether it\u2019s optimizing model performance, designing scalable APIs, or mentoring peers. I am actively seeking opportunities where I can contribute my skills, grow as an engineer, and work with teams at the forefront of AI innovation.",
+  "publicIdentifier": "sri-vallabh-tammireddy",
+  "openConnection": null,
+  "urn": "ACoAACuk320Bwu4LcYqUUr8TltvmyZCfYAbIUDQ",
+  "experiences": [],
+  "updates": [],
+  "skills": [
+    {
+      "title": "RAG",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Restaurant Reservation Agent - AI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Restaurant Reservation Agent - AI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Fine Tuning",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Parameter-Efficient Fine-Tuning of TinyLlama for Philosophical QA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "parameter efficient fine tuning",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Parameter-Efficient Fine-Tuning of TinyLlama for Philosophical QA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "LLaMA",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Parameter-Efficient Fine-Tuning of TinyLlama for Philosophical QA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SQL",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Restaurant Reservation Agent - AI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Application Programming Interfaces (API)",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "LLM Powered Fact Checker"
+            },
+            {
+              "type": "insightComponent",
+              "text": "Restaurant Reservation Agent - AI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Prompt Engineering",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "LLM Powered Fact Checker"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Git",
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    },
+    {
+      "title": "LangChain",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": " Generative AI Applications with RAG and  Langchain "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Computer Science",
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    },
+    {
+      "title": "Scikit-Learn",
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    },
+    {
+      "title": "Pattern Recognition",
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    },
+    {
+      "title": "Deep Learning",
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    },
+    {
+      "title": "Generative AI",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Indian Institute of Technology, Guwahati"
+            },
+            {
+              "type": "insightComponent",
+              "text": "Restaurant Reservation Agent - AI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Natural Language Processing (NLP)",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Indian Institute of Technology, Guwahati"
+            },
+            {
+              "type": "insightComponent",
+              "text": "LLM Powered Fact Checker"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "C++",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Indian Institute of Technology, Guwahati"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TensorFlow",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Indian Institute of Technology, Guwahati"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PyTorch",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Indian Institute of Technology, Guwahati"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Data Science",
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "insightComponent",
+              "text": "Indian Institute of Technology, Guwahati"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "profilePicAllDimensions": [
+    {
+      "width": 200,
+      "height": 200,
+      "url": "https://media.licdn.com/dms/image/v2/D5603AQEE5AZYXSjbGg/profile-displayphoto-scale_200_200/B56ZfO5JQ2GoAY-/0/1751522782138?e=1757548800&v=beta&t=Gc-xw3YXrBJxMRlHME_bhgBWhncHe8if1YjDIl-AvAk"
+    },
+    {
+      "width": 800,
+      "height": 800,
+      "url": "https://media.licdn.com/dms/image/v2/D5603AQEE5AZYXSjbGg/profile-displayphoto-crop_800_800/B56ZfO5JQ2GoAI-/0/1751522782049?e=1757548800&v=beta&t=36NV_HA22_iSoq2YfAhd_RkUGCfisGJ4Y5LXazw9XcQ"
+    },
+    {
+      "width": 100,
+      "height": 100,
+      "url": "https://media.licdn.com/dms/image/v2/D5603AQEE5AZYXSjbGg/profile-displayphoto-scale_100_100/B56ZfO5JQ2GoAc-/0/1751522782138?e=1757548800&v=beta&t=k8g641mlgCVxnWtF2zZeMYvAIOIIhssMMDdCxEO_xyU"
+    },
+    {
+      "width": 400,
+      "height": 400,
+      "url": "https://media.licdn.com/dms/image/v2/D5603AQEE5AZYXSjbGg/profile-displayphoto-scale_400_400/B56ZfO5JQ2GoAg-/0/1751522782138?e=1757548800&v=beta&t=Td_-GI4R7aWaq7P-wKnMW9kSJtgk87SdCclLqJTaK_g"
+    }
+  ],
+  "educations": [
+    {
+      "companyId": "157270",
+      "companyUrn": "urn:li:fsd_company:157270",
+      "companyLink1": "https://www.linkedin.com/company/157270/",
+      "logo": "https://media.licdn.com/dms/image/v2/C4E0BAQFsVma02aZ5dg/company-logo_200_200/company-logo_200_200/0/1631325731159?e=1757548800&v=beta&t=qAW6GjIuGFxUx5cC0Ss_eFLhVUkY9vI8hzosza5CD7o",
+      "title": "Indian Institute of Technology, Guwahati",
+      "subtitle": "Bachelor's degree, Computer Science",
+      "caption": "Nov 2021",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    }
+  ],
+  "licenseAndCertificates": [
+    {
+      "companyId": "1009",
+      "companyUrn": "urn:li:fsd_company:1009",
+      "companyLink1": "https://www.linkedin.com/company/1009/",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQGiz5ecgpCtkA/company-logo_200_200/company-logo_200_200/0/1688684715866/ibm_logo?e=1757548800&v=beta&t=C5dbdHfavHlMUrmNBjfx3INZ4A8a-isdhEK08oe_0Gk",
+      "title": " Generative AI Applications with RAG and  Langchain ",
+      "subtitle": "IBM",
+      "caption": "Issued Jun 2025",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "mediaComponent",
+              "text": "IBM_LangChain_Certificate.pdf",
+              "thumbnail": "https://media.licdn.com/dms/image/sync/v2/D5627AQGroCc43SoPJQ/articleshare-shrink_800/B56ZfK3wagG0AM-/0/1751455304545?e=1752764400&v=beta&t=A6g_RawMkYEbWuYiUo6mA_sMr9iD7VlPJRXpivoHerU"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "companyId": "1035",
+      "companyUrn": "urn:li:fsd_company:1035",
+      "companyLink1": "https://www.linkedin.com/company/1035/",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQH32RJQCl3dDQ/company-logo_100_100/B56ZYQ0mrGGoAU-/0/1744038948046/microsoft_logo?e=1757548800&v=beta&t=6VqOqIboEPdDMozFyiwxyPC91UqtwATilcWJLxDhTBg",
+      "title": "Foundations of AI and ML Engineering",
+      "subtitle": "Microsoft",
+      "caption": "Issued Jun 2025",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "mediaComponent",
+              "text": "Microsoft_Foundations_of_AI_certificate.pdf",
+              "thumbnail": "https://media.licdn.com/dms/image/sync/v2/D5627AQG0qo-zc4DP-A/articleshare-shrink_800/B56ZfK4WyfHQAI-/0/1751455461671?e=1752764400&v=beta&t=kIed6ptBbd-MuZC61aQpqKNl5HlDQL7x6QY4sDWksMo"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "honorsAndAwards": [],
+  "languages": [
+    {
+      "title": "English",
+      "caption": "Professional working proficiency",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    },
+    {
+      "title": "Hindi",
+      "caption": "Professional working proficiency",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    }
+  ],
+  "volunteerAndAwards": [],
+  "verifications": [],
+  "promos": [],
+  "highlights": [],
+  "projects": [
+    {
+      "title": "LLM Powered Fact Checker",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "textComponent",
+              "text": "\u2013 Built an AI fact-checking system using Llama 3 8B-8192, web-scraped PIB data using beau\ntifulsoup, and ChromaDB vector embeddings for real-time claim verification.\u2013 Integrated spaCy NER and T5-based claim extraction; combined RAG (Retrieval-Augmented\n Generation) with semantic search and multi-stage filtering for evidence retrieval and verdict\n generation.\u2013 Deployed on Hugging Face with Streamlit UI, Fernet encryption for vector security, and\n automated daily updates."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Parameter-Efficient Fine-Tuning of TinyLlama for Philosophical QA",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": [
+            {
+              "type": "textComponent",
+              "text": "\u2013 Fine-tuned TinyLlama-1.1B-Chat using QLoRA on a 134K Stanford Encyclopedia of Philosophy\n QA dataset, leading the entire pipeline from data curation to deployment (Streamlit, Hugging\n Face).\u2013 Achieved 3-epoch fine-tuning in 17 hours (vs. 76h for Mistral); merged category adapters using\n linear, TIES, DARE, pruning, and SVD.\u2013 TinyLlama outperformed LLaMA 3 8B-8192 on 53/57 questions; evaluated with BERTScore and\n LLM-as-judge, able to answer correctly even beating perplexity pro in domain specific questions."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "publications": [],
+  "patents": [],
+  "courses": [],
+  "testScores": [
+    {
+      "title": "JEE MAINS",
+      "subtitle": "Score: AIR 421 \u00b7 Jan 2021",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    },
+    {
+      "title": "JEE ADVANCED",
+      "subtitle": "Score: AIR 896",
+      "breakdown": false,
+      "subComponents": [
+        {
+          "description": []
+        }
+      ]
+    }
+  ],
+  "organizations": [],
+  "volunteerCauses": [],
+  "interests": [
+    {
+      "section_name": "Companies",
+      "section_components": [
+        {
+          "titleV2": "Tata Consultancy Services",
+          "caption": "17,531,453 followers",
+          "size": "LARGE",
+          "textActionTarget": "https://www.linkedin.com/company/1353/",
+          "subComponents": []
+        },
+        {
+          "titleV2": "Nielsen",
+          "caption": "1,327,653 followers",
+          "size": "LARGE",
+          "textActionTarget": "https://www.linkedin.com/company/1714/",
+          "subComponents": []
+        }
+      ]
+    },
+    {
+      "section_name": "Groups",
+      "section_components": [
+        {
+          "titleV2": "Internship Group ",
+          "caption": "1,370,585 members",
+          "size": "LARGE",
+          "textActionTarget": "https://www.linkedin.com/groups/6510263",
+          "subComponents": []
+        }
+      ]
+    },
+    {
+      "section_name": "Newsletters",
+      "section_components": [
+        {
+          "titleV2": "The Data Geek",
+          "caption": "Published weekly",
+          "subtitle": "Your go-to source for the week's top data content and resources!",
+          "size": "LARGE",
+          "textActionTarget": "https://www.linkedin.com/newsletters/7123676555750342656",
+          "subComponents": [
+            {
+              "insightComponent": {
+                "text": "Matillion",
+                "actionTarget": "https://www.linkedin.com/company/2360297/"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_name": "Schools",
+      "section_components": [
+        {
+          "titleV2": "Indian Institute of Technology, Guwahati",
+          "caption": "133,893 followers",
+          "size": "LARGE",
+          "textActionTarget": "https://www.linkedin.com/school/157270/",
+          "subComponents": []
+        }
+      ]
+    }
+  ],
+  "recommendations": []
+}
