@@ -34,6 +34,30 @@ Below are some example screenshots demonstrating key features of the AI LinkedIn
 
 ## Demonstration
 
+
+---
+
+![Scrape Profile](assets/scrape_profile.png)  
+🔍 **Profile Scraping**: The tool scrapes data from the user's LinkedIn profile URL to create a structured and summarized profile.
+
+---
+
+![History Options](assets/history.png)  
+🕘 **History Management**: The user is offered options to **Continue Previous Chat** or **Start New Chat** to manage ongoing or new conversations.
+
+---
+
+![Greeting](assets/greeting.png)  
+👋 **Greeting**: The assistant welcomes the user and explains how it can help, creating an engaging start to the conversation.
+
+---
+
+
+![Show Section](assets/section_show.png)  
+📄 **Show Section**: When asked, the assistant retrieves and displays the exact text of a chosen profile section (e.g., *Headline* or *About*).
+
+---
+
 ![Enhance Section](assets/enhance_section.png)  
 ✏️ **Enhance Section**: When the user asks to enhance a specific profile section (e.g., *About*), the assistant uses its tools to generate an improved version.
 
@@ -44,28 +68,9 @@ Below are some example screenshots demonstrating key features of the AI LinkedIn
 
 ---
 
-![Greeting](assets/greeting.png)  
-👋 **Greeting**: The assistant welcomes the user and explains how it can help, creating an engaging start to the conversation.
-
----
-
-![History Options](assets/history.png)  
-🕘 **History Management**: The user is offered options to **Continue Previous Chat** or **Start New Chat** to manage ongoing or new conversations.
-
----
-
 ![Job Fit](assets/job_fit.png)  
 🎯 **Job Fit Analysis**: The assistant checks how well the user's profile matches a specific target role, showing a match score and missing skills.
 
----
-
-![Scrape Profile](assets/scrape_profile.png)  
-🔍 **Profile Scraping**: The tool scrapes data from the user's LinkedIn profile URL to create a structured and summarized profile.
-
----
-
-![Show Section](assets/section_show.png)  
-📄 **Show Section**: When asked, the assistant retrieves and displays the exact text of a chosen profile section (e.g., *Headline* or *About*).
 
 
 All screenshots are stored in the `assets/` folder for clarity and documentation.
