@@ -546,30 +546,39 @@ with chat_container:
                     strengths = parsed["strengths"]
                     weaknesses = parsed["weaknesses"]
                     suggestions = parsed["suggestions"]
+                    formatted_html = f"""
+                    <h3>💪 <b>Strengths</b></h3>
+                    <ul>
+                    <li><b>Technical:</b> {', '.join(strengths.get('technical', []) or ['None'])}</li>
+                    <li><b>Projects:</b> {', '.join(strengths.get('projects', []) or ['None'])}</li>
+                    <li><b>Education:</b> {', '.join(strengths.get('education', []) or ['None'])}</li>
+                    <li><b>Soft Skills:</b> {', '.join(strengths.get('soft_skills', []) or ['None'])}</li>
+                    </ul>
 
-                    formatted = (
-                        "### 💪 **Strengths**\n"
-                        f"- **Technical:** {', '.join(strengths.get('technical', []) or ['None'])}\n"
-                        f"- **Projects:** {', '.join(strengths.get('projects', []) or ['None'])}\n"
-                        f"- **Education:** {', '.join(strengths.get('education', []) or ['None'])}\n"
-                        f"- **Soft Skills:** {', '.join(strengths.get('soft_skills', []) or ['None'])}\n\n"
-                        "### ⚠️ **Weaknesses**\n"
-                        f"- **Technical Gaps:** {', '.join(weaknesses.get('technical_gaps', []) or ['None'])}\n"
-                        f"- **Project/Experience Gaps:** {', '.join(weaknesses.get('project_or_experience_gaps', []) or ['None'])}\n"
-                        f"- **Missing Context:** {', '.join(weaknesses.get('missing_context', []) or ['None'])}\n\n"
-                        "### 🛠 **Suggestions to improve**\n"
-                        + "\n".join(f"- {s}" for s in suggestions)
-                    )
+                    <h3>⚠️ <b>Weaknesses</b></h3>
+                    <ul>
+                    <li><b>Technical Gaps:</b> {', '.join(weaknesses.get('technical_gaps', []) or ['None'])}</li>
+                    <li><b>Project/Experience Gaps:</b> {', '.join(weaknesses.get('project_or_experience_gaps', []) or ['None'])}</li>
+                    <li><b>Missing Context:</b> {', '.join(weaknesses.get('missing_context', []) or ['None'])}</li>
+                    </ul>
+
+                    <h3>🛠 <b>Suggestions to improve</b></h3>
+                    <ul>
+                    {''.join(f'<li>{s}</li>' for s in suggestions)}
+                    </ul>
+                    """
 
                     st.markdown(f"""
-                        <div class="chat-row ai">
-                            <img class="avatar" src="https://img.icons8.com/ios-filled/50/1a237e/robot-2.png" alt="Tool"/>
-                            <div class="chat-bubble bubble-ai">
-                                <span class="sender-label">📊 Profile Analysis</span>
-                                {formatted}
-                            </div>
-                        </div>
+                    <div class="chat-row ai">
+                    <img class="avatar" src="https://img.icons8.com/ios-filled/50/1a237e/robot-2.png" alt="Tool"/>
+                    <div class="chat-bubble bubble-ai">
+                        <span class="sender-label">📊 Profile Analysis</span>
+                        {formatted_html}
+                    </div>
+                    </div>
                     """, unsafe_allow_html=True)
+
+
 
                 # --- Job fit format ---
                 elif "match_score" in parsed:
