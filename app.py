@@ -17,6 +17,7 @@ from profile_preprocessing import (
     initialize_state,
     normalize_url
 )
+import os
 from openai import OpenAI
 import streamlit as st
 import hashlib
@@ -33,11 +34,8 @@ from langgraph.graph import add_messages  # if your framework exposes this
 from langgraph.prebuilt import ToolNode,tools_condition,InjectedState
 import dirtyjson
 import sqlite3
-try:
-    from langgraph.checkpoint.sqlite import SqliteSaver
-    SQLITE_AVAILABLE = True
-except ImportError:
-    SQLITE_AVAILABLE = False
+from langgraph.checkpoint.sqlite import SqliteSaver
+   
 
 
 
@@ -406,15 +404,12 @@ st.title("🧑‍💼 LinkedIn AI Career Assistant")
 
 # --- Checkpointer and graph initialization ---
 if "checkpointer" not in st.session_state:
-    if SQLITE_AVAILABLE:
-        import os
-        print("Current working directory:", os.getcwd())
-        print("Files in working directory:", os.listdir("."))
+        
+    print("Current working directory:", os.getcwd())
+    print("Files in working directory:", os.listdir("."))
 
-        conn = sqlite3.connect("checkpoints1.db", check_same_thread=False)
-        st.session_state["checkpointer"] = SqliteSaver(conn)
-    else:
-        st.session_state["checkpointer"] = MemorySaver()
+    conn = sqlite3.connect("checkpoints1.db", check_same_thread=False)
+    st.session_state["checkpointer"] = SqliteSaver(conn)
 checkpointer = st.session_state["checkpointer"]
 
 if "app_graph" not in st.session_state:
@@ -667,7 +662,7 @@ with chat_container:
 st.markdown("---")
 
 user_input = st.chat_input(
-    placeholder="Ask about your LinkedIn profile, e.g., 'Analyze my profile, how do I fit for AI role, how is my about section?'" 
+    placeholder="Ask about your LinkedIn profile, e.g., 'Analyze my profile, How do I fit for AI role?, How is my about section?, Enhance my headline,etc...'" 
 )
 
 if user_input and user_input.strip():
