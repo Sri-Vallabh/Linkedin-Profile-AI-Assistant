@@ -407,6 +407,10 @@ st.title("🧑‍💼 LinkedIn AI Career Assistant")
 # --- Checkpointer and graph initialization ---
 if "checkpointer" not in st.session_state:
     if SQLITE_AVAILABLE:
+        import os
+        print("Current working directory:", os.getcwd())
+        print("Files in working directory:", os.listdir("."))
+
         conn = sqlite3.connect("checkpoints1.db", check_same_thread=False)
         st.session_state["checkpointer"] = SqliteSaver(conn)
     else:

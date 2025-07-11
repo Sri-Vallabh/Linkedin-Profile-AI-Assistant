@@ -15,7 +15,7 @@ langchain-core
 langchain-openai
 langgraph
 langgraph-checkpoint
-
+langgraph-checkpoint-sqlite
 # For OpenAI-compatible LLMs (Groq, etc.)
 openai
 
